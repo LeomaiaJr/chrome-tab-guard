@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install jq and shellcheck
+        run: sudo apt-get update && sudo apt-get install -y jq shellcheck
+
+      - name: Validate settings JSON
+        run: jq empty .claude/settings.json
+
+      - name: Shellcheck
+        run: shellcheck .claude/hooks/*.sh scripts/*.sh
+
+      - name: Hook tests
+        run: ./scripts/test-hooks.sh
