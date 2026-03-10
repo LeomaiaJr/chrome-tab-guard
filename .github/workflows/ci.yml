@@ -22,7 +22,7 @@ jobs:
         run: jq empty .claude/settings.json
 
       - name: Shellcheck
-        run: shellcheck .claude/hooks/*.sh scripts/*.sh
+        run: shellcheck -x .claude/hooks/*.sh scripts/*.sh
 
       - name: Hook tests
         run: ./scripts/test-hooks.sh
