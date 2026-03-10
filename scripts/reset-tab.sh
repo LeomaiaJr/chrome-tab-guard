@@ -2,6 +2,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck disable=SC1091
 # shellcheck source=../.claude/hooks/lib.sh
 source "$SCRIPT_DIR/../.claude/hooks/lib.sh"
 
